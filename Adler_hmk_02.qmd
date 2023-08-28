@@ -1,0 +1,35 @@
+---
+title: "hmk_02"
+format: gfm
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+2 + 2
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+Homework 2 Questions:
+
+1.  What were the main issues in the Reinhard and Rogoff issue, and how best could they have been avoided?
+
+2.  What key attributes make a piece of data analysis "reproducible"? Please put those attributes in a prioritized list (i.e., for you, what is most important, next  most important, etc\...)
+
+3.  Imagine that you are doing a piece of data analysis that only you will ever see: perhaps you are shopping for a car and trying to determine what will give you the best value for your money. Should you think about making your data analysis reproducible? Why or why not?
