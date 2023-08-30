@@ -2,7 +2,7 @@
 
 ## Quarto
 
-## Homework 2:
+## Homework 2: 
 
 1.  What were the main issues in the Reinhard and Rogoff issue, and how
     best could they have been avoided?
