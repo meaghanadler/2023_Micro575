@@ -1,4 +1,4 @@
-# Adler_hmk_03
+# Adler Homework 3
 
 # Base R and R Basics
 
@@ -31,9 +31,9 @@ Q2 <- x*pi
 
         [1] "C:/Users/meagh/OneDrive - University of Tennessee/Grad Courses/Micro 575"
 
-Yes this is a good working directory, it is organized logically. I am
-not sure what program you are referring too- I set it to this directory
-when I saved the template file in this folder.
+Yes this is a good working directory, the project is saved with a
+logical name. Rstudio is the program setting the project location (not
+R).
 
 ## Vectors
 
@@ -44,7 +44,7 @@ numbers <- c(sample(1 : 10, size = 10, replace = F))
 print(numbers)
 ```
 
-     [1] 10  2  9  8  5  3  1  7  6  4
+     [1]  5  3  7  9  2  4  1  8  6 10
 
 I used the sample function to create a list of 10 random numbers between
 1 and 10 that do not repeat.
@@ -106,7 +106,7 @@ concatenated vector individually and outputing the new, unsaved vector.
 rm(list=ls())
 ```
 
-Poof!
+![poof!](https://i.gifer.com/3klP.gif)
 
 ## Graphics
 
@@ -129,6 +129,7 @@ library(palmerpenguins)
 
 plt=ggplot(data=penguins, 
        mapping = aes(x = flipper_length_mm, y = body_mass_g, color = bill_depth_mm)) + geom_point() + geom_smooth(method ="loess")
+
 
 suppressWarnings(print(plt))
 ```

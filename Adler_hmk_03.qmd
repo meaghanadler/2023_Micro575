@@ -1,5 +1,5 @@
 ---
-title: " Adler_hmk_03"
+title: " Adler Homework 3"
 format: gfm
 editor: visual
 ---
@@ -16,7 +16,6 @@ HINT: Remember that you can get help on any function by typing `?`(function name
 x <- (3*(4+2))
 ```
 
-
 2.  Calculate the product of `x` (from the above question) times π.
 
 ```{r}
@@ -24,16 +23,14 @@ Q2 <- x*pi
 
 ```
 
-
 3.  Use the `getwd()` function to show your current working directory. Is that a good working directory, and what program do you think set it that way?
 
     ```{r}
     getwd()
+   
     ```
 
-
-
-Yes this is a good working directory, it is organized logically. I am not sure what program you are referring too- I set it to this directory when I saved the template file in this folder.
+Yes this is a good working directory, the project is saved with a logical name. Rstudio is the program setting the project location (not R). 
 
 ## Vectors
 
@@ -44,8 +41,6 @@ numbers <- c(sample(1 : 10, size = 10, replace = F))
 print(numbers)
 ```
 
-
-
 I used the sample function to create a list of 10 random numbers between 1 and 10 that do not repeat.
 
 2.  Use the `c()` function to create a vector of characters.
@@ -55,15 +50,12 @@ characters <- c("A", "B", "C","D","E","F")
 print(characters)
 ```
 
-
 3.  Use the `:` implicit function to create a vector of integers from 1 to 10.
 
 ```{r}
 integers <- c(1:10)
 print(integers)
 ```
-
-
 
 4.  Explain *why* the following code returns what it does. Also address whether you think this was a good decision on the part of the designers of R?
 
@@ -83,17 +75,15 @@ This code is generating a vector "V1" that contains integers from 1 to 3 and it 
 c(1, 5, 9) + 3
 ```
 
-
-
 The above code is adding the integer 3 to each of the entries in the concatenated vector individually and outputing the new, unsaved vector.
 
 6.  Remove (delete) every variable in your workspace.
 
 ```{r}
 rm(list=ls())
-```
 
-Poof!
+```
+![poof!](https://i.gifer.com/3klP.gif)
 
 ## Graphics
 
@@ -113,10 +103,10 @@ library(palmerpenguins)
 plt=ggplot(data=penguins, 
        mapping = aes(x = flipper_length_mm, y = body_mass_g, color = bill_depth_mm)) + geom_point() + geom_smooth(method ="loess")
 
+
 suppressWarnings(print(plt))
 
 ```
-
 
 3.  Explain why each aesthetic is mapped at the level that it is (i.e., at the global level, in the `ggplot()` function call, or at the geom level, in the `geom_XXX()` function call). Note: A lot of different options will work, but some options are clearly better than others.
 
