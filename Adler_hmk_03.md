@@ -44,7 +44,7 @@ numbers <- c(sample(1 : 10, size = 10, replace = F))
 print(numbers)
 ```
 
-     [1]  2  9  5  1  8  4  3 10  7  6
+     [1]  6 10  7  2  3  5  1  9  4  8
 
 I used the sample function to create a list of 10 random numbers between
 1 and 10 that do not repeat.
@@ -129,11 +129,18 @@ library(palmerpenguins)
 plt=ggplot(data=penguins, 
        mapping = aes(x = flipper_length_mm, y = body_mass_g, color = bill_depth_mm)) + geom_point() + geom_smooth(method ="loess")
 
-
-suppressWarnings(print(plt))
+print(plt)
 ```
 
-    `geom_smooth()` using formula = 'y ~ x'
+    Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).
+
+    Warning: The following aesthetics were dropped during statistical transformation: colour
+    ℹ This can happen when ggplot fails to infer the correct grouping structure in
+      the data.
+    ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+      variable into a factor?
+
+    Warning: Removed 2 rows containing missing values (`geom_point()`).
 
 ![](Adler_hmk_03_files/figure-commonmark/unnamed-chunk-11-1.png)
 
