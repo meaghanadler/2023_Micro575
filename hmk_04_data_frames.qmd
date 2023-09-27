@@ -34,10 +34,10 @@ result<- flights |>
   filter(day==16) |>
   filter(distance<2000)
 
-plt<-ggplot(data=result, mapping = aes(distance, air_time))+
+plt1<-ggplot(data=result, mapping = aes(distance, air_time))+
   geom_point()
 
-print(plt)
+print(plt1)
 ```
 
 # Question 2: dealing with NAs

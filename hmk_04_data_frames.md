@@ -50,10 +50,13 @@ result<- flights |>
   filter(day==16) |>
   filter(distance<2000)
 
-plt<-ggplot(data=result, mapping = aes(distance, air_time))+geom_point()
+plt1<-ggplot(data=result, mapping = aes(distance, air_time))+
+  geom_point()
 
-suppressWarnings(print(plt))
+print(plt1)
 ```
+
+    Warning: Removed 75 rows containing missing values (`geom_point()`).
 
 ![](hmk_04_data_frames_files/figure-commonmark/unnamed-chunk-2-1.png)
 
@@ -67,7 +70,13 @@ Make a data frame of all of the rows of `flights` that have values for
 resultQ2 <- flights |>
   filter(!is.na(arr_time)) |>
   filter(!is.na(dep_time))
+
+sum(is.na(resultQ2$arr.time)) 
 ```
+
+    Warning: Unknown or uninitialised column: `arr.time`.
+
+    [1] 0
 
 Question/For me to think more about: How do I ask R to look for any NA
 in the final df to confirm it worked? I used
@@ -87,10 +96,13 @@ variable and using the suppressWarning( ) function when I display the
 plot.
 
 ``` r
-plt2<-ggplot(data=result, mapping = aes(distance, air_time))+geom_point()
+plt2<-ggplot(data=result, mapping = aes(distance, air_time))+
+  geom_point()
 
-suppressWarnings(print(plt2))
+print(plt2)
 ```
+
+    Warning: Removed 75 rows containing missing values (`geom_point()`).
 
 ![](hmk_04_data_frames_files/figure-commonmark/unnamed-chunk-4-1.png)
 
@@ -107,7 +119,8 @@ resultQ3 <- flights |>
   group_by(month) |>
   mutate(avg_flight_speed = mean(speed, na.rm=TRUE))
 
-plt3 <- ggplot(data=resultQ3, mapping =aes(avg_flight_speed)) + geom_density()
+plt3 <- ggplot(data=resultQ3, mapping =aes(avg_flight_speed)) + 
+  geom_density()
 print(plt3)
 ```
 
