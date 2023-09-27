@@ -27,10 +27,10 @@ Q2 <- x*pi
 
     ```{r}
     getwd()
-   
+       
     ```
 
-Yes this is a good working directory, the project is saved with a logical name. Rstudio is the program setting the project location (not R). 
+Yes this is a good working directory, the project is saved with a logical name. Rstudio is the program setting the project location (not R).
 
 ## Vectors
 
@@ -83,6 +83,7 @@ The above code is adding the integer 3 to each of the entries in the concatenate
 rm(list=ls())
 
 ```
+
 ![poof!](https://i.gifer.com/3klP.gif)
 
 ## Graphics
@@ -91,7 +92,6 @@ rm(list=ls())
 
 ```{r, message=FALSE}
 library(tidyverse)
-message =FALSE
 ```
 
 2.  Recreate the visualization of `body_mass_g` to `flipper_length_mm`, from the penguins data set, that is shown in question 8 of section 2.2.5 of [R4DS](https://r4ds.hadley.nz/data-visualize).

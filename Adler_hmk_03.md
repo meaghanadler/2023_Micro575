@@ -44,7 +44,7 @@ numbers <- c(sample(1 : 10, size = 10, replace = F))
 print(numbers)
 ```
 
-     [1]  5  3  7  9  2  4  1  8  6 10
+     [1]  2  9  5  1  8  4  3 10  7  6
 
 I used the sample function to create a list of 10 random numbers between
 1 and 10 that do not repeat.
@@ -116,7 +116,6 @@ rm(list=ls())
 
 ``` r
 library(tidyverse)
-message =FALSE
 ```
 
 2.  Recreate the visualization of `body_mass_g` to `flipper_length_mm`,
