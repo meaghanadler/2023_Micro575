@@ -28,28 +28,31 @@ Make a plot of air time as a function of distance (air time on the y axis, dista
 -   departed on the 16th of the month
 -   have a flight distance of less than 2000
 
-```{r}
+```{r, message=FALSE}
 result<- flights |>
   filter(origin=="LGA")|>
   filter(day==16) |>
   filter(distance<2000)
 
-plt<-ggplot(data=result, mapping = aes(distance, air_time))+geom_point()
+plt<-ggplot(data=result, mapping = aes(distance, air_time))+
+  geom_point()
 
-suppressWarnings(print(plt))
+print(plt)
 ```
 
 # Question 2: dealing with NAs
 
 Make a data frame of all of the rows of `flights` that have values for *both* `arr_time` and `dep_time` - that is, neither of those values are `NA`.
 
-```{r}
+```{r, message=FALSE}
 resultQ2 <- flights |>
   filter(!is.na(arr_time)) |>
   filter(!is.na(dep_time))
 
+sum(is.na(resultQ2$arr.time)) 
 ```
-Question/For me to think more about: How do I ask R to look for any NA in the final df to confirm it worked? I used print(is.na(resultQ2$arr_time)) and print(is.na(flights$arr_time)) for a TRUE/FALSE. 
+
+Question/For me to think more about: How do I ask R to look for any NA in the final df to confirm it worked? I used print(is.na(resultQ2$arr_time)) and print(is.na(flights$arr_time)) for a TRUE/FALSE.
 
 ## filtering NAs
 
@@ -57,23 +60,25 @@ Question/For me to think more about: How do I ask R to look for any NA in the fi
 
 ANS: I can prevent the warning message by assigning the plot to a variable and using the suppressWarning( ) function when I display the plot.
 
-```{r}
-plt2<-ggplot(data=result, mapping = aes(distance, air_time))+geom_point()
+```{r, mesage=FALSE}
+plt2<-ggplot(data=result, mapping = aes(distance, air_time))+
+  geom_point()
 
-suppressWarnings(print(plt2))
+print(plt2)
 ```
 
 # Question 3: adding columns
 
 Create a data frame of average flight speeds, based on `air_time` and `distance`. Make either a histogram or a density plot of the data. If you like, you may break the data out (e.g. by airline, or some other variable) in a way that you think makes sense.
 
-```{r}
+```{r, message=FALSE}
 resultQ3 <- flights |>
   mutate(speed = distance / air_time) |>
   group_by(month) |>
   mutate(avg_flight_speed = mean(speed, na.rm=TRUE))
 
-plt3 <- ggplot(data=resultQ3, mapping =aes(avg_flight_speed)) + geom_density()
+plt3 <- ggplot(data=resultQ3, mapping =aes(avg_flight_speed)) + 
+  geom_density()
 print(plt3)
 
 ```
