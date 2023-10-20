@@ -110,7 +110,7 @@ format(df$VLPMOI,digits=2, nsmall=2)
 
 ``` r
 #Figure generation: want different colors and different symbols in the legend per MOI with 2 decimal places
-my_good<- ggplot(df, aes(x=Time, y=df$Mean, color = factor(df$VLPMOI), shape=factor(df$VLPMOI))) + 
+my_good<- ggplot(df, aes(x=Time, y= Mean, color = factor(VLPMOI), shape=factor(VLPMOI))) + 
   geom_line() +
   geom_point() +
   scale_color_brewer(palette="Dark2") +
