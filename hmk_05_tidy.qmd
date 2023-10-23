@@ -1,0 +1,100 @@
+---
+title: "HMK 5: Reading and tidying data"
+format: gfm
+---
+
+# Reading
+
+-   [R4DS Chapters 6-9](https://r4ds.hadley.nz/data-import)
+
+# Data import
+
+## Q1:
+
+-   Create a directory, within your main class directory, called `data`.
+    -   Note: in general, you should store raw data in a directory called `data`.
+-   Download the example file for Ch 9 [here](https://pos.it/r4ds-students-csv). Save it inside the `ddata` directory.
+-   Use `read_csv()` to read the file to an R data frame. Follow the instructions in Ch 9 to format it properly. Follow the directions in Ch 9 to make sure the following are true:
+    -   Column names should be *syntactic*, meaning they don't contain spaces.
+    -   N/A values should be represented with the R value `NA`, not the character "N/A".
+    -   Data types (character vs factor vs numeric) should be appropriate.
+
+# In terminal:
+-   mkdir data
+-   touch data/.Micro575_HMK5 
+-   git add data/.Micro575_HMK5 
+-   git commit -m "Create data directory" 
+-   git push origin main
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+rm(list = ls())
+
+datachp9in <- read_csv("2030927Chp9.csv", na = c("N/A", ""))
+datachp9 <- subset(datachp9in, select = 0:5)
+
+#Pipe to make Age numerical
+Chp9tidy <- datachp9 |>
+  rename(student_id = `Student ID`,full_name = `Full Name`,meal_plan = `mealPlan`) |>
+  mutate(meal_plan = factor(meal_plan)) |>
+  mutate(Age = parse_number(if_else(AGE == "five", "5", AGE))) |>
+  rename(favorite_food = favorite.food) |>
+  select(-AGE)
+
+```
+
+## Q2
+
+Find (or make) a data file of your own, in text format. Read it into a well-formatted data frame.
+
+```{r, message = FALSE, warning = FALSE}
+df <- read_csv("2023092325_MA_MOI_Determination.csv")
+wfdf <- df |>
+  rename(cellden_std = `Cell Density STD`)
+
+```
+
+# Tidying
+
+Download the data set available at <https://tiny.utk.edu/MICR_575_hmk_05>, and save it to your `data` folder. **This is a real data set:** it is the output from the evaluation forms for student colloquium speakers in the Microbiology department. I have eliminated a few columns, changed some of the scores, and edited comments, to protect student privacy, but the output is real.
+
+First, open this .csv file with Microsoft Excel or a text reading app, to get a sense of the structure of the document. It is weird.
+
+Why is the file formatted so inconveniently? I have no idea, but I do know that this is about an average level of inconvenient formatting for real data sets you will find in the wild.
+
+*Note: In theory, you can pass a URL to `read_csv()` and read the file directly from the internet. In practice, that doesn't seem to work for this file. So you'll want to download this file to your hard drive.*
+
+## Q3a
+
+Next, use `read_csv()` to read the data into a data frame. Note that you'll need to make use of some of the optional arguments. Use `?read_csv` to see what they are.
+
+*If you are struggling with this task, email me for hints.*
+
+As we discussed in class, the correct shape depends on what you want to do with the data. Use `pivot_longer()` to make the data frame longer, in a way that makes sense.
+
+```{r, message=FALSE, warning=FALSE}
+headers <- names(read_csv("colloquium_assessment.csv", n_max = 0))
+RawResp <-read_csv("colloquium_assessment.csv", col_names = headers,skip = 6)
+
+CleanResp <- RawResp |>
+  filter(!apply(RawResp == "NA", 1, all)) |>
+  select(-contains('Recipient')) |>
+  select(-contains('External')) |>
+  rename("Feedback" = "Q12") |>
+  pivot_longer(c(contains("Q")), names_to = "Question", values_to = "Answer")
+
+```
+
+Question: How can I drop the Q from all entries in the Question column after pivoting?
+
+## Q3b
+
+Finally, calculate this student's average score for each of questions 7-10.
+
+```{r, message=FALSE, warning=FALSE}
+AverageQs<-CleanResp|>
+  group_by(Question)|>
+  summarise(mean = mean(Answer))|>
+  filter(Question=="Q7"|Question=="Q8"|Question=="Q9"|Question=="Q10")
+  
+```
