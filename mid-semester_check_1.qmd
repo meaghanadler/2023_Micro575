@@ -7,7 +7,7 @@ editor:
 ---
 
 0.  Load libraries 
-```{r, messages=FALSE, warning=FALSE}
+```{r,message=FALSE,warning=FALSE}
 rm(list=ls())
 library(tidyverse) 
 library(dplyr)
@@ -17,7 +17,7 @@ library(nycflights13)
 1.  Calculate the average and standard deviation of flight delays for
     each airline, *counting only those flights that were delayed longer
     than an hour*. 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 
  #Easy way, using just arrival delays
  flightstats_Arrival<- flights |>
