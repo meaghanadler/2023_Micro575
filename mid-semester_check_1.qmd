@@ -36,8 +36,33 @@ library(nycflights13)
 
 2.  Identify the 5 flights (i.e., unique combination of `carrier` and
     `flight`) that are most frequently delayed more than a half hour.
+    Comment: The output is the same whether answered via arrival delay or departure delay
 ```{r}
- 
+glimpse(flights)
+#How to use reduce(rbind, by()) in a pipe?
+
+#Based on arrival delay
+filterstats_5toparr <- flights|>
+  filter(!is.na(arr_delay), !is.na(dep_delay), arr_delay >=30 | dep_delay >= 30)|>
+  select(carrier,flight,dep_delay,arr_delay)|>
+  count(carrier,flight, sort=TRUE)|>
+  head(arr_delay,n=5)
+
+#Based on departure delay
+filterstats_5topdep <- flights|>
+  filter(!is.na(dep_delay), dep_delay >= 30)|>
+  select(carrier,flight,dep_delay)|>
+  count(carrier,flight, sort=TRUE)|>
+  head(dep_delay,n=5)
+
+
+#Overkill way
+filterstats_5topoverkill <- flights|>
+  filter(!is.na(arr_delay), !is.na(dep_delay), arr_delay >=30 | dep_delay >= 30)|>
+  select(carrier,flight,dep_delay,arr_delay)|>
+  pivot_longer(cols = contains("delay"), names_to= "Arrival or Departure", values_to = "Time")|>
+  count(carrier,flight, sort=TRUE)|>
+  head(`Most Frequently Delayed`,n=5)
 
 ```
 
@@ -48,6 +73,17 @@ library(nycflights13)
     order of median flight time, from highest on the left to lowest on
     the right.
 ```{r}
+glimpse(flights)
+
+plotdata <- flights |>
+  select(carrier, flight, air_time)|>
+  filter(!is.na(carrier),!is.na(flight),!is.na(air_time))|>
+  group_by(carrier)|>
+  mutate("median flight time"=median(air_time))|>
+  arrange(desc(`median flight time`))
+
+ggplot(data=plotdata,mapping = aes(carrier,air_time))+
+  geom_boxplot()
 
 ```
 
