@@ -123,12 +123,21 @@ glimpse(flights)
 plotdata <- flights |>
   select(carrier, flight, air_time)|>
   filter(!is.na(carrier),!is.na(flight),!is.na(air_time))|>
-  group_by(carrier)|>
-  mutate("median flight time"=median(air_time))|>
-  arrange(desc(`median flight time`))
+  group_by(carrier)
 
-ggplot(data=plotdata,mapping = aes(carrier,air_time))+
-  geom_boxplot()
+#Subset df for individual data point visualization
+#reordered so that by picking every 20th its not skewing data
+tenth<- plotdata |>
+  with(plotdata, reorder(carrier, air_time, median))|>
+  filter(row_number() %% 20 == 1)
+
+ggplot(data=plotdata,mapping = aes(fct_reorder(.f=carrier,.x=desc(air_time),.fun=median),air_time))+
+  geom_boxplot(size=0, alpha=0)+
+  geom_jitter(data=tenth, aes(carrier,air_time), size=0.1,alpha=0.1)+
+  xlab("Airline Carrier")+ 
+  ylab("Air Time")+
+  ggtitle("Distribution of flight time by airline")+
+  theme_minimal()
 ```
 
 ![](mid-semester_check_1_files/figure-commonmark/unnamed-chunk-4-1.png)
