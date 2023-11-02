@@ -1,0 +1,30 @@
+# Adler Project Pitch
+
+## 20231102 MA Micro575: Project Pitch
+
+## Who is in your group (or is it a solo project)?
+
+This will be a solo project for me. I messaged Eva about giving her the
+data I used in my plot presentation (cyanobacteria lysed by virus at
+different dosages, timeseries) and she can recreate the plot and write
+code to have the quarto document summarize the inflection point per
+dosage.
+
+## Is your project an analysis or a tool?
+
+My project will be analysis-based.
+
+## In a couple of sentences: What problem are you trying to solve, and who will it help? (No need to overthink “who will it help” - in the case of an analysis project, “It will make my dissertation better” is sufficient).
+
+The question I am answering is what is the profile of Lake Erie
+organisms in the winter. I’m going to use metatranscriptome data that
+has already been processed. My project will involve making the dataset
+tidy, generating abundance plots at different levels of classification.
+I am planning on 1 high-level abundance plot, then a minimum of 3
+sub-abundance plots that are diatoms, cyanobacteria, and freshwater
+fungi. I want to create a very simple GUI that will allow a viewer to
+select which subplot to display. If I have time, I would like to add a
+table showcasing which genes from freshwater fungi are most
+differentially regulated from a summer dataset. The project will form
+(hopefully) the start of a paper regarding freshwater fungi activity
+(carbon cycling) in winter seasons in Lake Erie.
