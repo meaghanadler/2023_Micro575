@@ -1,0 +1,50 @@
+---
+title: "HMK 08 template"
+format: gfm
+---
+```{r, warnings=FALSE, message=FALSE}
+library(nycflights13)
+library(tidyverse)
+library(dplyr)
+```
+
+# Joins
+
+1. Imagine you’ve found the top 10 most popular destinations using this code:
+```{r, warnings=FALSE, message=FALSE}
+top_dest <- flights |>
+  count(dest, sort = TRUE) |>
+  head(10)
+```
+How can you find all flights to those destinations?
+- Worked wtih Eva in class Friday
+```{r, warnings=FALSE, message=FALSE}
+
+#Use top_dest as primary key, adding all of secondary key columns to it
+all_flights_sloppy<- top_dest|>
+  left_join(flights)|>
+  select(dest, flight)
+
+#Use top_dest as primary key, add only selected column from secondary key to it
+all_flights_pretty <- top_dest |>
+  cross_join(as.data.frame(flights$flight))
+#I don't know if this actually worked
+  
+```
+
+# Functions
+
+2. Write a function to 'rescale' a numeric vector by subtracting the mean of the vector from each element and then dividing each element by the standard deviation. 
+```{r, warnings=FALSE, message=FALSE}
+vector<- c(5,6,7,8,9,10,11,12,13,14,15)
+
+scaled_vector <- function(vector){
+ (vector-mean(vector))/(sd(vector))}
+
+#Works with vector
+scaled_vector(vector)
+#Check with a new vector set
+Other <- c(100,120,140,150)
+scaled_vector(Other)
+```
+
